@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>MineDaEscola</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(#1a1a1a, #000);
+  color: white;
+  text-align: center;
+}
+#launcher {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+input {
+  padding: 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+}
+button {
+  padding: 10px 20px;
+  font-size: 18px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 5px;
+  background: #00aa00;
+  color: white;
+  cursor: pointer;
+}
+button:hover {
+  background: #00cc00;
+}
+iframe {
+  display: none;
+  width: 100%;
+  height: 100vh;
+  border: none;
+}
+footer {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  font-size: 14px;
+  color: #ccc;
+}
+</style>
+</head>
+<body>
+<div id="launcher">
+  <h1>MineDaEscola</h1>
+  <input id="nick" placeholder="Digite seu nick">
+  <button onclick="jogar()">Jogar</button>
+</div>
+<iframe id="game"></iframe>
+<footer>Gostou do jogo? Doe nesse Pix: alveshilda704@gmail.com</footer>
+<script>
+window.onload = () => {
+  let nickSalvo = localStorage.getItem("nick");
+  if (nickSalvo) {
+    document.getElementById("nick").value = nickSalvo;
+  }
+};
+function jogar() {
+  let nick = document.getElementById("nick").value;
+  if (!nick) {
+    alert("Digite um nick!");
+    return;
+  }
+  localStorage.setItem("nick", nick);
+  document.getElementById("launcher").style.display = "none";
+  let game = document.getElementById("game");
+  game.style.display = "block";
+  game.src = "https://minedaescola.com/?username=" + nick;
+}
+</script>
+</body>
+</html>
